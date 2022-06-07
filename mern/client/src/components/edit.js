@@ -3,10 +3,25 @@ import { useParams, useNavigate } from "react-router";
 
 export default function Edit() {
   const [form, setForm] = useState({
-    name: "",
+    company: "",
+    logo: "",
+    logoBackground: "", 
     position: "",
-    level: "",
-    records: [],
+    postedAt: "",
+    contract: "",
+    location: "",
+    website: "",
+    apply: "",
+    description: "",
+    requirements: {
+      content: "",
+      items: "",
+    },
+    role: {
+      content: "",
+      items: "",
+    },
+    jobs: [],
   });
   const params = useParams();
   const navigate = useNavigate();
@@ -14,7 +29,7 @@ export default function Edit() {
   useEffect(() => {
     async function fetchData() {
       const id = params.id.toString();
-      const response = await fetch(`http://localhost:5000/record/${params.id.toString()}`);
+      const response = await fetch(`http://localhost:5000/job/${params.id.toString()}`);
 
       if (!response.ok) {
         const message = `An error has occured: ${response.statusText}`;
@@ -67,15 +82,15 @@ export default function Edit() {
   // This following section will display the form that takes input from the user to update the data.
   return (
     <div>
-      <h3>Update Record</h3>
+      <h3>Update Job</h3>
       <form onSubmit={onSubmit}>
         <div className="form-group">
-          <label htmlFor="name">Name: </label>
+          <label htmlFor="name">Company: </label>
           <input
             type="text"
             className="form-control"
             id="name"
-            value={form.name}
+            value={form.company}
             onChange={(e) => updateForm({ name: e.target.value })}
           />
         </div>
@@ -89,43 +104,34 @@ export default function Edit() {
             onChange={(e) => updateForm({ position: e.target.value })}
           />
         </div>
+
         <div className="form-group">
           <div className="form-check form-check-inline">
             <input
               className="form-check-input"
               type="radio"
               name="positionOptions"
-              id="positionIntern"
-              value="Intern"
-              checked={form.level === "Intern"}
-              onChange={(e) => updateForm({ level: e.target.value })}
+              id="contractPartTime"
+              value="Part Time"
+              checked={form.contract === "Part Time"}
+              onChange={(e) => updateForm({ contract: e.target.value })}
             />
-            <label htmlFor="positionIntern" className="form-check-label">Intern</label>
+            <label htmlFor="contractPartTime" className="form-check-label">Part Time</label>
           </div>
+
           <div className="form-check form-check-inline">
             <input
               className="form-check-input"
               type="radio"
               name="positionOptions"
-              id="positionJunior"
-              value="Junior"
-              checked={form.level === "Junior"}
-              onChange={(e) => updateForm({ level: e.target.value })}
+              id="contractFullTime"
+              value="Full Time"
+              checked={form.contract === "Full Time"}
+              onChange={(e) => updateForm({ contract: e.target.value })}
             />
-            <label htmlFor="positionJunior" className="form-check-label">Junior</label>
+            <label htmlFor="contractFullTime" className="form-check-label">Full Time</label>
           </div>
-          <div className="form-check form-check-inline">
-            <input
-              className="form-check-input"
-              type="radio"
-              name="positionOptions"
-              id="positionSenior"
-              value="Senior"
-              checked={form.level === "Senior"}
-              onChange={(e) => updateForm({ level: e.target.value })}
-            />
-            <label htmlFor="positionSenior" className="form-check-label">Senior</label>
-        </div>
+
         </div>
         <br />
 
