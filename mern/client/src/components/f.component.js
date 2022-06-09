@@ -4,7 +4,6 @@ import { useAutocomplete } from '@mui/base/AutocompleteUnstyled';
 // import CheckIcon from '@mui/icons-material';
 import { styled } from '@mui/material/styles';
 import { autocompleteClasses } from '@mui/material/Autocomplete';
-import { useState } from "react";
 
 const Root = styled('div')(
   ({ theme }) => `

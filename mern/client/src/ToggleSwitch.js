@@ -2,7 +2,7 @@ import "./ToggleSwitch.css";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./components/globalStyles";
 import { lightTheme, darkTheme } from "./components/Themes";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 
 const ToggleSwitch = () => {

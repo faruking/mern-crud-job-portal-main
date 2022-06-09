@@ -27,9 +27,9 @@ import {
     const stringLogoLength = stringLogo.length;
     const logoName = stringLogo[stringLogoLength-1];
     const images = importAll(require.context('../assets/logos', false, /\.svg/));
-    console.log(images);
-    console.log(logoName);
-    console.log(images[logoName]);
+    // console.log(images);
+    // console.log(logoName);
+    // console.log(images[logoName]);
     const link = '/job-details/' + _id;
     return (
      
@@ -72,9 +72,10 @@ import {
 export default function JobList() {
   const [jobs, setJobs] = useState([]);
   const [count, setCount] = useState(6);
+  var filter = [];
 
 	const [description, setDescription] = useState({ label: "" });
-	const [location, setLocation] = useState('');
+	const [location, setLocation] = useState([]);
 	const handleInputChange = (e, v) => {
 		setDescription(v);
 	};
@@ -86,12 +87,12 @@ export default function JobList() {
 		setLocation(v);
 	};
 	console.log(description);
-	console.log(location);
+	// console.log(location);
   // This method fetches the records from the database.
   useEffect(() => {
     async function getJobs() {
-      const response = await fetch(`http://localhost:5000/job/`);
-
+      const response = await fetch(`http://localhost:5000/job/?`);
+      console.log('nnnn');
       if (!response.ok) {
         const message = `An error occured: ${response.statusText}`;
         window.alert(message);
@@ -127,6 +128,22 @@ export default function JobList() {
       }
     });
   }
+  const onSubmit= (e)=>{
+    e.preventDefault();
+   
+    // jobs.forEach(element => {
+    //   location.forEach(e => {
+    //     if(element.location === e){
+    //       console.log('yess');
+    //     }
+    //   })
+    // });
+    location.forEach(element => {
+      filter=jobs.filter(e => e.location === element);
+    });
+    setJobs(filter);
+    console.log(filter);
+  }
 
   const companySuggest = [];
 	const titleSuggest = [];
@@ -148,21 +165,21 @@ export default function JobList() {
 
 	}
 	const allSuggestions = companySuggest.concat(titleSuggest);
-	console.log(companySuggest);
+	// console.log(companySuggest);
 	// submit search
 
   // This following section will display the table with the records of individuals.
   return (
     <Container>
       <div className="col-md-12">
-        <form  action="#">
+        <form action="/?query">
           <div className="search-area">
           <div className="sa-item">
 							<div className="search-input">
 								<img src={iconSearch} alt='icon search'/>
 							</div>
 							<div className="search-input" id="search-box" >
-								<InputSystem suggestions={allSuggestions} handleChange={handleInputChange} placeholder={"Filter by title,companies,expertise..."} />
+								<InputSystem suggestions={allSuggestions} handleChange={handleInputChange} selectedValue placeholder={"Filter by title,companies,expertise..."} />
 							</div>
 
 						</div>
@@ -187,10 +204,10 @@ export default function JobList() {
 								<input placeholder="Filter by location..." />
 							</div>
 							<div className="search-input">
-								<img src={iconFilter} />
+								<img src={iconFilter} alt=''/>
 							</div>
 							<div className="search-input" id='mobile-icon-search'>
-								<img src={mobileIconSearch} />
+								<img src={mobileIconSearch} alt=''/>
 							</div>
 						</div>          </div>
         </form>

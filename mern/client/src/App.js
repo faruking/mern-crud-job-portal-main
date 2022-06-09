@@ -13,6 +13,7 @@ import ToggleSwitch from "./ToggleSwitch";
 // We import all the components we need in our app
 import Navbar from "./components/navbar";
 import JobList from "./components/jobList";
+import JobSearch from "./components/searchPage";
 import Edit from "./components/edit";
 import Create from "./components/create";
 // Import Custom CSS
@@ -70,6 +71,7 @@ const App = () => {
         <Routes>
           <Route exact path="/" element={<JobList />} />
           <Route path="/job-details/:id" element={<JobDetails />} />
+          <Route path="/?query" element={<JobSearch />} />
           <Route path="/edit/:id" element={<Edit />} />
           <Route path="/create" element={<Create />} />
         </Routes>
