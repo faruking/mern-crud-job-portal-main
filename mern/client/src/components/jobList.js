@@ -103,13 +103,13 @@ export default function JobList() {
       setJobs(jobs);
     }
 
-    getJobs
+    getJobs();
     return; 
   }, [jobs.length]);
 
   // This method will delete a record
   async function deleteJob(id) {
-    await fetch(`http://localhost:5000/${id}`, {
+    await fetch(`https://mern-crud-job-portal-main.vercel.app/${id}`, {
       method: "DELETE"
     });
 
