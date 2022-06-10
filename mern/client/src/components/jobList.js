@@ -91,7 +91,7 @@ export default function JobList() {
   // This method fetches the records from the database.
   useEffect(() => {
     async function getJobs() {
-      const response = await fetch(`http://localhost:5000/job/?`);
+      const response = await fetch(`https://mern-crud-job-portal-main.vercel.app/job/?`);
       console.log('nnnn');
       if (!response.ok) {
         const message = `An error occured: ${response.statusText}`;
@@ -103,8 +103,7 @@ export default function JobList() {
       setJobs(jobs);
     }
 
-    getJobs();
-
+    getJobs
     return; 
   }, [jobs.length]);
 
