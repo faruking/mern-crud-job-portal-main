@@ -1,6 +1,6 @@
 
 const { MongoClient } = require("mongodb");
-const Db = process.env.ATLAS_URI;
+const Db = process.env.REACT_APP_MONGODB_CONNECTION_STRING;
 const client = new MongoClient(Db, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
