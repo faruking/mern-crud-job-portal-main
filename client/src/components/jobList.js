@@ -91,7 +91,7 @@ export default function JobList() {
   // This method fetches the records from the database.
   useEffect(() => {
     async function getJobs() {
-      const response = await fetch(`https://mern-crud-job-portal-main.vercel.app/job/?`);
+      const response = await fetch(`https://mern-crud-job-portal-main.herokuapp.com/job/?`);
       console.log('nnnn');
       if (!response.ok) {
         const message = `An error occured: ${response.statusText}`;
@@ -109,7 +109,7 @@ export default function JobList() {
 
   // This method will delete a record
   async function deleteJob(id) {
-    await fetch(`https://mern-crud-job-portal-main.vercel.app/${id}`, {
+    await fetch(`https://mern-crud-job-portal-main.herokuapp.com//${id}`, {
       method: "DELETE"
     });
 
