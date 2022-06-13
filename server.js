@@ -1,7 +1,10 @@
 const express = require("express");
+const mongoose = require("mongoose");
 const app = express();
 const cors = require("cors");
-require("dotenv").config({ path: "./config.env" });
+require("dotenv").config();
+const bodyParser = require("body-parser");
+
 const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
@@ -10,6 +13,10 @@ app.use(require("./routes/job"));
 const dbo = require("./db/conn");
 // Accessing the path module
 const path = require("path");
+
+//middleware
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // Step 1:
 app.use(express.static(path.resolve(__dirname, "./client/build")));
