@@ -6,7 +6,6 @@ import { Route, Routes, Link } from "react-router-dom";
 // Import Images
 import iconSun from "./assets/desktop/icon-sun.svg"
 import iconMoon from "./assets/desktop/icon-moon.svg"
-
 //import toggleswitch
 import ToggleSwitch from "./ToggleSwitch";
 
@@ -35,30 +34,30 @@ const App = () => {
                 <h2>devjobs</h2>
               </Link>
             </div>
-            <div style={{display:'flex',flexDirection:'row',alignItems:'center'}}>
-            <div>
-            <Link to={"/job-list"}
-            className="nav-link">
-            <div>
-              <img src={iconSun} alt=''/>
+            <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+              <div>
+                <Link to={"/job-list"}
+                  className="nav-link">
+                  <div>
+                    <img src={iconSun} alt='' />
+                  </div>
+                </Link>
+              </div>
+              <div>
+                <React.Fragment>
+                  <ToggleSwitch label="m" />
+                </React.Fragment>
+              </div>
+              <div>
+                <Link to={"/job-details"}
+                  className="nav-link">
+                  <div>
+                    <img src={iconMoon} alt='' />
+                  </div>
+                </Link>
+              </div>
             </div>
-          </Link>
-            </div>
-            <div>
-            <React.Fragment>
-						<ToggleSwitch label="m"/>
-					</React.Fragment>
-            </div>
-            <div>
-            <Link to={"/job-details"}
-					className="nav-link">
-						<div>
-						<img src={iconMoon} alt=''/>
-						</div>
-				</Link>
-            </div>
-            </div>
-         
+
           </div>
           <div>
           </div>
@@ -66,12 +65,11 @@ const App = () => {
 
       </header>
 
-
       <div>
         <Routes>
-          <Route exact path="/" element={<JobList />} />
+          <Route path="/" element={<JobList />} />
           <Route path="/job-details/:id" element={<JobDetails />} />
-          <Route path="/?query" element={<JobSearch />} />
+          <Route path="/search" element={<JobSearch />} />
           <Route path="/edit/:id" element={<Edit />} />
           <Route path="/create" element={<Create />} />
         </Routes>

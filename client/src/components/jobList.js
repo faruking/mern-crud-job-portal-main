@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate,useLocation } from "react-router-dom";
 import {
   Card, CardImg, CardBody,
   CardTitle, CardSubtitle,
@@ -68,16 +68,26 @@ const JobCard = (props) => {
 //     </td>
 //   </tr>
 // );
-
+var filteredJobs = false;
+var filter = [];
 export default function JobList() {
   const [jobs, setJobs] = useState([]);
   const [count, setCount] = useState(6);
-  var filter = [];
-
-  const [description, setDescription] = useState({ label: "" });
+ 
+  
+  const [description, setDescription] = useState([]);
   const [location, setLocation] = useState([]);
   const handleInputChange = (e, v) => {
     setDescription(v);
+    description.forEach(element => {
+      if(element === jobs.position){
+        console.log(element);
+      }
+      else if(element === jobs.company){
+        console.log(element);
+      }
+    }
+    )
   };
   const handleCallback = (childData) => {
     setLocation(childData);
@@ -91,7 +101,7 @@ export default function JobList() {
   // This method fetches the records from the database.
   useEffect(() => {
     async function getJobs() {
-      const response = await fetch(`https://mern-crud-job-portal-main.herokuapp.com/job/?`);
+      const response = await fetch(`https://mern-crud-job-portal-main.herokuapp.com/job/`);
       console.log('nnnn');
       if (!response.ok) {
         const message = `An error occured: ${response.statusText}`;
@@ -102,8 +112,22 @@ export default function JobList() {
       const jobs = await response.json();
       setJobs(jobs);
     }
+    async function getFilteredJobs() {
+      const response = await fetch(`https://mern-crud-job-portal-main.herokuapp.com/job/`);
+      console.log('ooo');
+      if (!response.ok) {
+        const message = `An error occured: ${response.statusText}`;
+        window.alert(message);
+        return;
+      }
 
-    getJobs();
+      const jobs = await response.json();
+      filter = jobs.filter(e => e.location === 'Japan');
+      console.log(filter);
+      setJobs(filter);
+    }
+    filteredJobs ? getFilteredJobs() : getJobs();
+
     return;
   }, [jobs.length]);
 
@@ -127,21 +151,31 @@ export default function JobList() {
       }
     });
   }
-  const onSubmit = (e) => {
-    e.preventDefault();
 
-    // jobs.forEach(element => {
-    //   location.forEach(e => {
-    //     if(element.location === e){
-    //       console.log('yess');
-    //     }
-    //   })
-    // });
+  const getDescription = (array) =>{
+    array.forEach(element => {
+      if(element === jobs.position){
+        console.log(element);
+      }
+      else if(element === jobs.company){
+        console.log(element);
+      }
+    }
+
+    )
+  }
+let navigate = useNavigate();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(location);
     location.forEach(element => {
       filter = jobs.filter(e => e.location === element);
     });
+    filteredJobs = true;
+
     setJobs(filter);
     console.log(filter);
+    // navigate('/search?location=United Kingdom');
   }
 
   const companySuggest = [];
@@ -171,7 +205,7 @@ export default function JobList() {
   return (
     <Container>
       <div className="col-md-12">
-        <form action={onSubmit}>
+        <form  onSubmit={handleSubmit} action='/search'>
           <div className="search-area">
             <div className="sa-item">
               <div className="search-input">
