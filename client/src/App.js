@@ -15,6 +15,7 @@ import JobList from "./components/jobList";
 import JobSearch from "./components/searchPage";
 import Edit from "./components/edit";
 import Create from "./components/create";
+import NoResult from "./components/no-results";
 // Import Custom CSS
 import "./App.css";
 
@@ -72,6 +73,7 @@ const App = () => {
           <Route path="/search" element={<JobSearch />} />
           <Route path="/edit/:id" element={<Edit />} />
           <Route path="/create" element={<Create />} />
+          <Route path="/no-results" element={<NoResult />} />
         </Routes>
       </div>
     </div>

@@ -424,3 +424,10 @@
   .css-1tm81ay{
     border: none !important;
   }
+  .no-results{
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    position: absolute;
+    font-size: large;
+  }
