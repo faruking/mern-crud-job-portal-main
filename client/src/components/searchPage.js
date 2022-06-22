@@ -202,7 +202,7 @@ export default function JobSearch() {
                 <input placeholder="Filter by location..." />
               </div>
               <div className="search-input">
-                <img src={iconFilter} alt='' />
+                {/* <img src={iconFilter} alt='' /> */}
               </div>
               <div className="search-input" id='mobile-icon-search'>
                 <img src={mobileIconSearch} alt='' />

@@ -59,6 +59,7 @@ export default function JobList() {
   const [description, setDescription] = useState([]);
   const [location, setLocation] = useState([]);
   const handleInputChange = (e, v) => {
+    e.target.placeholder='';
     setDescription(v);
   };
   const handleCheck = (e) => {
@@ -208,8 +209,8 @@ let temp = [];
               <div className="search-input" id="search-box" >
                 <input placeholder="Filter by location..." />
               </div>
-              <div className="search-input">
-                <img src={iconFilter} alt='' />
+              <div className="search-input" id="search-filter">
+                {/* <img src={iconFilter} alt='' /> */}
               </div>
               <div className="search-input" id='mobile-icon-search'>
                 <img src={mobileIconSearch} alt='' />
