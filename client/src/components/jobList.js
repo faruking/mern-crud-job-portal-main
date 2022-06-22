@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link,useNavigate,useLocation,useSearchParams } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import {
   Card, CardImg, CardBody,
   CardTitle, CardSubtitle,
@@ -110,19 +110,6 @@ export default function JobList() {
         );
       }
     });
-  }
-
-  const getDescription = (array) =>{
-    array.forEach(element => {
-      if(element === jobs.position){
-        console.log(element);
-      }
-      else if(element === jobs.company){
-        console.log(element);
-      }
-    }
-
-    )
   }
 let navigate = useNavigate();
 let temp = [];
