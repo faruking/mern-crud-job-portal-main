@@ -10,6 +10,7 @@ import iconLocation from "../assets/desktop/icon-location.svg";
 import iconFilter from "../assets/mobile/icon-filter.svg";
 import mobileIconSearch from "../assets/mobile/icon-search-white.svg";
 import InputSystem from './f.component';
+import { red } from "@mui/material/colors";
 
 
 const JobCard = (props) => {
@@ -176,8 +177,37 @@ let temp = [];
   // submit search
 
   // This following section will display the table with the records of individuals.
+
+function openDialog(){
+  const element = document.getElementById('filterDialog');
+  element.style.display='block';
+}
+function closeDialog(e){
+  if(e.target.id === 'filterDialog'){
+    e.target.style.display = 'none';
+  }
+}  
+
   return (
     <Container>
+      <div id="filterDialog" onClick={closeDialog}>
+      <form  onSubmit={handleSubmit} action='/search' className="mobile-form" >
+            <div className="mobile-search-item">
+              <div className="search-input">
+                <img src={iconLocation} alt='icon location' />
+              </div>
+              <InputSystem suggestions={locationSuggestions} handleChange={handleLocationChange} placeholder={'Filter by Location'} />
+            </div>
+            <div className="mobile-search-item">
+              <div><input id="cb" type="checkbox" name="cb" onChange={handleCheck}/>
+                <label htmlFor="cb"><strong className="label-text"></strong></label>
+              </div>
+            </div>
+            <div className="mobile-search-item">
+                <button>Search</button>
+              </div>
+            </form>
+      </div>
       <div className="col-md-12">
         <form  onSubmit={handleSubmit} action='/search'>
           <div className="search-area">
@@ -207,13 +237,12 @@ let temp = [];
             <div className="sa-item">
 
               <div className="search-input" id="search-box" >
-                <input placeholder="Filter by location..." />
+              <InputSystem suggestions={allSuggestions} handleChange={handleInputChange} selectedValue placeholder={"Enter Job description"} />
               </div>
-              <div className="search-input" id="search-filter">
-                {/* <img src={iconFilter} alt='' /> */}
+              <div className="search-input" id="search-filter" onClick={openDialog}>
               </div>
               <div className="search-input" id='mobile-icon-search'>
-                <img src={mobileIconSearch} alt='' />
+                <img src={mobileIconSearch} alt='' onClick={handleSubmit}/>
               </div>
             </div>
           </div>

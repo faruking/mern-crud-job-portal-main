@@ -25,6 +25,7 @@ import JobDetails from "../src/components/job-details.component";
 const App = () => {
   return (
     <div className="App">
+      
       {/* <Navbar /> */}
       <header className="App-header">
         <div className="navbar navbar-light navbar-expand nav">

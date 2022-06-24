@@ -359,8 +359,34 @@
     background: url(./assets/mobile/icon-filter.svg);
     background-repeat: no-repeat;
   }
-  
-  
+  #filterDialog{
+    position: absolute;
+    top: -10%;
+    left: -2%;
+    width: 100%;
+    height: 100%;
+    background-color: #00000052;
+    z-index: 1;
+    display: none;
+  }
+  .filterFlex{
+    display: flex;
+    flex-direction: column;
+    height: 80px;
+  }
+  .mobile-search-item{
+    display: flex;
+    gap: 16px;
+    padding: 16px;
+    width: 100%;
+    background-color: #fff;
+    align-items: center;
+  }
+  .mobile-form{
+    transform: translate(0, 150%);
+    margin: auto;
+    width: 90%;
+  }
   
   @media screen and (max-width:768px) {
     .css-1tm81ay {
