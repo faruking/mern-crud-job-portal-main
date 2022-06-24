@@ -13,19 +13,19 @@ const ObjectId = require("mongodb").ObjectId;
 
 var query = {location:"United Kingdom"};
 // This section will help you get a list of all the jobs.
-jobRoutes.route("/job").get(function (req, res) {
-  let db_connect = dbo.getDb("reactdb");
-  db_connect
-    .collection("job")
-    .find({})
-    .toArray(function (err, result) {
-      if (err) throw err;
-      res.json(result);
-    });
-});
+// jobRoutes.route("/job").get(function (req, res) {
+//   let db_connect = dbo.getDb("reactdb");
+//   db_connect
+//     .collection("job")
+//     .find({location:'United States'})
+//     .toArray(function (err, result) {
+//       if (err) throw err;
+//       res.json(result);
+//     });
+// });
 
 
-jobRoutes.route("/?query").get(function (req, res) {
+jobRoutes.route("/search").get(function (req, res) {
   let db_connect = dbo.getDb("reactdb");
   db_connect
     .collection("job")
