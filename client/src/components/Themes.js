@@ -16,5 +16,6 @@ export const darkTheme = {
     textColor:'#5964E0',
     siteButtonHoverColor:'#66677288',
     contain: '#19202D',
-    bgBackground: 'url(./assets/desktop/bg-dark-mode.svg)'
+    titlehover: '#6E8098',
+    filterBackground:'url(./assets/mobile/icon-filter-white.svg)',
 }

@@ -205,6 +205,9 @@
     font-weight: 700;
     overflow: hidden;
   }
+  .title:hover {
+    color: #6E8098;
+  }
   
   .dot {
     width: 4px;
@@ -328,6 +331,9 @@
   .link-style{
     text-decoration: none;
   }
+  .link-style:hover{
+    text-decoration: none;
+  }
   .lowercase{
     text-transform: lowercase;
   }
@@ -344,12 +350,48 @@
     padding: 16px;
     border-radius: none;
   }
-  
-  
-  
-  
+  .css-r7wuju{
+    border-right:1px solid #5964E0 !important;
+  }
+ #search-filter{
+    width: 40px;
+    height:20px;
+    background: url(./assets/mobile/icon-filter.svg);
+    background-repeat: no-repeat;
+  }
+  #filterDialog{
+    position: absolute;
+    top: -10%;
+    left: -2%;
+    width: 100%;
+    height: 100%;
+    background-color: #00000052;
+    z-index: 1;
+    display: none;
+  }
+  .filterFlex{
+    display: flex;
+    flex-direction: column;
+    height: 80px;
+  }
+  .mobile-search-item{
+    display: flex;
+    gap: 16px;
+    padding: 16px;
+    width: 100%;
+    background-color: #fff;
+    align-items: center;
+  }
+  .mobile-form{
+    transform: translate(0, 150%);
+    margin: auto;
+    width: 90%;
+  }
   
   @media screen and (max-width:768px) {
+    .css-1tm81ay {
+      width: 120px !important;
+    }
     .App-header{
       background:  url(./assets/tablet/bg-pattern-header.svg);
     }
@@ -424,3 +466,11 @@
   .css-1tm81ay{
     border: none !important;
   }
+  .no-results{
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    position: absolute;
+    font-size: large;
+  }
+  

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import {
   Card, CardImg, CardBody,
   CardTitle, CardSubtitle,
@@ -10,6 +10,7 @@ import iconLocation from "../assets/desktop/icon-location.svg";
 import iconFilter from "../assets/mobile/icon-filter.svg";
 import mobileIconSearch from "../assets/mobile/icon-search-white.svg";
 import InputSystem from './f.component';
+import { red } from "@mui/material/colors";
 
 
 const JobCard = (props) => {
@@ -51,37 +52,25 @@ const JobCard = (props) => {
     </div>
   );
 };
-// const Job = (props) => (
-//   <tr>
-//     <td>{props.job.company}</td>
-//     <td>{props.job.position}</td>
-//     <td>{props.job.requirements.content}</td>
-//     <td>
-//       <Link className="btn btn-link" to={`/edit/${props.job._id}`}>Edit</Link> |
-//       <button className="btn btn-link"
-//         onClick={() => {
-//           props.deleteJob(props.job._id);
-//         }}
-//       >
-//         Delete
-//       </button>
-//     </td>
-//   </tr>
-// );
-
+var filter = [];
+var contract = '';
 export default function JobList() {
   const [jobs, setJobs] = useState([]);
   const [count, setCount] = useState(6);
-  var filter = [];
-
-  const [description, setDescription] = useState({ label: "" });
+  const [description, setDescription] = useState([]);
   const [location, setLocation] = useState([]);
   const handleInputChange = (e, v) => {
+    e.target.placeholder='';
     setDescription(v);
   };
-  const handleCallback = (childData) => {
-    setLocation(childData);
-    console.log(location);
+  const handleCheck = (e) => {
+    if(e.target.checked){
+      contract = 'Full Time';
+      console.log('true');
+    }
+    else{
+      console.log('false');
+    }
   }
   const handleLocationChange = (e, v) => {
     setLocation(v);
@@ -91,18 +80,15 @@ export default function JobList() {
   // This method fetches the records from the database.
   useEffect(() => {
     async function getJobs() {
-      const response = await fetch(`https://mern-crud-job-portal-main.herokuapp.com/job/?`);
-      console.log('nnnn');
+      const response = await fetch(`https://mern-crud-job-portal-main.herokuapp.com/job/`);
       if (!response.ok) {
         const message = `An error occured: ${response.statusText}`;
         window.alert(message);
         return;
       }
-
       const jobs = await response.json();
       setJobs(jobs);
     }
-
     getJobs();
     return;
   }, [jobs.length]);
@@ -127,23 +113,46 @@ export default function JobList() {
       }
     });
   }
-  const onSubmit = (e) => {
+let navigate = useNavigate();
+let temp = [];
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    // jobs.forEach(element => {
-    //   location.forEach(e => {
-    //     if(element.location === e){
-    //       console.log('yess');
-    //     }
-    //   })
-    // });
-    location.forEach(element => {
-      filter = jobs.filter(e => e.location === element);
-    });
-    setJobs(filter);
+    console.log(location);
+    console.log(description);
+    if(Array.isArray(location) && location.length > 0){
+      temp.push(...location);
+    }
+    if(Array.isArray(description) && description.length > 0){
+      temp.push(...description);
+    }
+    console.log(temp);
     console.log(filter);
+    if(temp.length>0){
+      filter = jobs.filter(e => temp.includes(e.position) || temp.includes(e.company) || temp.includes(e.location));
+      console.log(filter);
+      if(contract === 'Full Time'){
+        const anotherFilter = filter.filter(e => e.contract === contract);
+        navigate('/search?location=United Kingdom',{state:{jobs:anotherFilter}}); 
+      }
+      else{
+        navigate('/search?location=United Kingdom',{state:{jobs:filter}});
+      }
+    }
+    else{
+      if(contract === 'Full Time'){
+        const filter = jobs.filter(e => e.contract === contract);
+        navigate('/search?location=United Kingdom',{state:{jobs:filter}}); 
+      }
+      else{
+        if(location.length === 0 && description.length === 0){
+          alert('Please enter a valid search term');
+        }
+        else{
+          navigate('/no-results');
+        }
+      }
+    }
   }
-
   const companySuggest = [];
   const titleSuggest = [];
   const locationSuggestions = [];
@@ -168,10 +177,39 @@ export default function JobList() {
   // submit search
 
   // This following section will display the table with the records of individuals.
+
+function openDialog(){
+  const element = document.getElementById('filterDialog');
+  element.style.display='block';
+}
+function closeDialog(e){
+  if(e.target.id === 'filterDialog'){
+    e.target.style.display = 'none';
+  }
+}  
+
   return (
     <Container>
+      <div id="filterDialog" onClick={closeDialog}>
+      <form  onSubmit={handleSubmit} action='/search' className="mobile-form" >
+            <div className="mobile-search-item">
+              <div className="search-input">
+                <img src={iconLocation} alt='icon location' />
+              </div>
+              <InputSystem suggestions={locationSuggestions} handleChange={handleLocationChange} placeholder={'Filter by Location'} />
+            </div>
+            <div className="mobile-search-item">
+              <div><input id="cb" type="checkbox" name="cb" onChange={handleCheck}/>
+                <label htmlFor="cb"><strong className="label-text"></strong></label>
+              </div>
+            </div>
+            <div className="mobile-search-item">
+                <button>Search</button>
+              </div>
+            </form>
+      </div>
       <div className="col-md-12">
-        <form action={onSubmit}>
+        <form  onSubmit={handleSubmit} action='/search'>
           <div className="search-area">
             <div className="sa-item">
               <div className="search-input">
@@ -188,7 +226,7 @@ export default function JobList() {
               <InputSystem suggestions={locationSuggestions} handleChange={handleLocationChange} placeholder={'Filter by Location'} />
             </div>
             <div className="sa-item">
-              <div><input id="cb" type="checkbox" name="cb" />
+              <div><input id="cb" type="checkbox" name="cb" onChange={handleCheck}/>
                 <label htmlFor="cb"><strong className="label-text"></strong></label>
               </div>
               <div>
@@ -199,13 +237,12 @@ export default function JobList() {
             <div className="sa-item">
 
               <div className="search-input" id="search-box" >
-                <input placeholder="Filter by location..." />
+              <InputSystem suggestions={allSuggestions} handleChange={handleInputChange} selectedValue placeholder={"Enter Job description"} />
               </div>
-              <div className="search-input">
-                <img src={iconFilter} alt='' />
+              <div className="search-input" id="search-filter" onClick={openDialog}>
               </div>
               <div className="search-input" id='mobile-icon-search'>
-                <img src={mobileIconSearch} alt='' />
+                <img src={mobileIconSearch} alt='' onClick={handleSubmit}/>
               </div>
             </div>
           </div>
