@@ -31,10 +31,7 @@ const App = () => {
         <div className="navbar navbar-light navbar-expand nav">
           <div className="header-title container">
             <div>
-              <Link to={"/add-jobs"}
-                className="nav-link">
-                <h2>devjobs</h2>
-              </Link>
+                <h2 style={{color:'#fff'}}>devjobs</h2>
             </div>
             <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
               <div>
