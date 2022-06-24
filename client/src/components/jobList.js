@@ -100,6 +100,7 @@ export default function JobList() {
       }
 
       const jobs = await response.json();
+      console.log(jobs);
       setJobs(jobs);
     }
 
