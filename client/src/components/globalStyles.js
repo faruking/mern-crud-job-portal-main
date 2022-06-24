@@ -31,4 +31,10 @@ export const GlobalStyles = createGlobalStyle`
   .css-1tm81ay input,.css-1tm81ay{
     background-color: ${({theme}) => theme.contain}
   }
+  .title:hover{
+    color:${({theme}) => theme.titlehover}
+  }
+  #search-filter{
+    background: ${({theme}) => theme.filterBackground}
+  }
   `
