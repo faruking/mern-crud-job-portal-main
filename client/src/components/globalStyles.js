@@ -28,7 +28,7 @@ export const GlobalStyles = createGlobalStyle`
   .App-header{
       background: ${({theme}) => theme.bgBackground}
   }
-  .css-1tm81ay input{
+  .css-1tm81ay input,.css-1tm81ay{
     background-color: ${({theme}) => theme.contain}
   }
   .title:hover{
