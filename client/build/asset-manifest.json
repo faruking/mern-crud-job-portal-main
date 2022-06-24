@@ -1,23 +1,22 @@
 {
   "files": {
-    "main.css": "/static/css/main.1eb0c1cd.chunk.css",
-    "main.js": "/static/js/main.fc952af4.chunk.js",
-    "main.js.map": "/static/js/main.fc952af4.chunk.js.map",
+    "main.css": "/static/css/main.f965021e.chunk.css",
+    "main.js": "/static/js/main.da534283.chunk.js",
+    "main.js.map": "/static/js/main.da534283.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.a06e69b5.js",
     "runtime-main.js.map": "/static/js/runtime-main.a06e69b5.js.map",
     "static/css/2.ef9168ec.chunk.css": "/static/css/2.ef9168ec.chunk.css",
-    "static/js/2.f20150bd.chunk.js": "/static/js/2.f20150bd.chunk.js",
-    "static/js/2.f20150bd.chunk.js.map": "/static/js/2.f20150bd.chunk.js.map",
+    "static/js/2.a9e4b599.chunk.js": "/static/js/2.a9e4b599.chunk.js",
+    "static/js/2.a9e4b599.chunk.js.map": "/static/js/2.a9e4b599.chunk.js.map",
     "index.html": "/index.html",
     "static/css/2.ef9168ec.chunk.css.map": "/static/css/2.ef9168ec.chunk.css.map",
-    "static/css/main.1eb0c1cd.chunk.css.map": "/static/css/main.1eb0c1cd.chunk.css.map",
-    "static/js/2.f20150bd.chunk.js.LICENSE.txt": "/static/js/2.f20150bd.chunk.js.LICENSE.txt",
-    "static/media/App.css": "/static/media/bg-pattern-header.f3307602.svg",
+    "static/css/main.f965021e.chunk.css.map": "/static/css/main.f965021e.chunk.css.map",
+    "static/js/2.a9e4b599.chunk.js.LICENSE.txt": "/static/js/2.a9e4b599.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/static/media/icon-filter.2471816d.svg",
     "static/media/blogr.svg": "/static/media/blogr.4b687618.svg",
     "static/media/coffeeroasters.svg": "/static/media/coffeeroasters.70ce77da.svg",
     "static/media/creative.svg": "/static/media/creative.af94119f.svg",
     "static/media/crowdfund.svg": "/static/media/crowdfund.1aee1724.svg",
-    "static/media/icon-filter.2471816d.svg": "/static/media/icon-filter.2471816d.svg",
     "static/media/icon-location.325ff3d9.svg": "/static/media/icon-location.325ff3d9.svg",
     "static/media/icon-moon.038e80ca.svg": "/static/media/icon-moon.038e80ca.svg",
     "static/media/icon-search-white.5bfbf7b4.svg": "/static/media/icon-search-white.5bfbf7b4.svg",
@@ -35,8 +34,8 @@
   "entrypoints": [
     "static/js/runtime-main.a06e69b5.js",
     "static/css/2.ef9168ec.chunk.css",
-    "static/js/2.f20150bd.chunk.js",
-    "static/css/main.1eb0c1cd.chunk.css",
-    "static/js/main.fc952af4.chunk.js"
+    "static/js/2.a9e4b599.chunk.js",
+    "static/css/main.f965021e.chunk.css",
+    "static/js/main.da534283.chunk.js"
   ]
 }
