@@ -132,16 +132,16 @@ let temp = [];
       console.log(filter);
       if(contract === 'Full Time'){
         const anotherFilter = filter.filter(e => e.contract === contract);
-        navigate('/search?location=United Kingdom',{state:{jobs:anotherFilter}}); 
+        navigate('/search?',{state:{jobs:anotherFilter}}); 
       }
       else{
-        navigate('/search?location=United Kingdom',{state:{jobs:filter}});
+        navigate('/search?',{state:{jobs:filter}});
       }
     }
     else{
       if(contract === 'Full Time'){
         const filter = jobs.filter(e => e.contract === contract);
-        navigate('/search?location=United Kingdom',{state:{jobs:filter}}); 
+        navigate('/search?',{state:{jobs:filter}}); 
       }
       else{
         if(location.length === 0 && description.length === 0){
