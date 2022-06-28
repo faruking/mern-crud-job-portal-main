@@ -35,12 +35,9 @@ const App = () => {
             </div>
             <div style={{display:'flex',flexDirection:'row',alignItems:'center'}}>
             <div>
-            <Link to={"/job-list"}
-            className="nav-link">
-            <div>
+            <div 	className="nav-link">
               <img src={iconSun} alt=''/>
             </div>
-          </Link>
             </div>
             <div>
             <React.Fragment>
@@ -48,12 +45,10 @@ const App = () => {
 					</React.Fragment>
             </div>
             <div>
-            <Link to={"/job-details"}
-					className="nav-link">
-						<div>
+						<div 	className="nav-link">
 						<img src={iconMoon} alt=''/>
 						</div>
-				</Link>
+			
             </div>
             </div>
          
